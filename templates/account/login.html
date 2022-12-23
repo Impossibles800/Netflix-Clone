@@ -1,7 +1,7 @@
 {% extends '../base.html' %}
 {% load static %}
 {% block title %}
-    Login
+    Netflix
 {% endblock title %}
 
 {% block others %}
@@ -11,6 +11,7 @@
 
 {% block content %}
 
+    {% include '../others/navbar.html' %}
     <header class="min-h-screen w-full bg-black bg-opacity-75 showcase border-gray-600 border-b-8 flex justify-center py-20 bg-no-repeat"
             style="background-image: url('{% static 'background_netflix.jpg' %}')">
         <div class="z-10 h-full py-32 md:py-0 text-gray-100 w-6/12  flex items-center flex-col">
@@ -19,18 +20,11 @@
                     Log In
                 </h1>
                 {% csrf_token %}
-
                 {% if form.errors %}
-
                     <div class=" text-center my-4 text-primary_red">
-
-
                         <p class="text-primary_red ">
-
                             {{ form.non_field_errors }}
                         </p>
-
-
                     </div>
                 {% endif %}
                 <div>
@@ -55,6 +49,10 @@
                         Log In
                     </button>
                 </div>
+
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
 
                 <div class="text-center my-4">
                     <p>
